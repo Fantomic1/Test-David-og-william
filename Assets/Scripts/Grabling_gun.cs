@@ -34,7 +34,6 @@ public class Grabling_gun : MonoBehaviour
 
     IEnumerator GrablingRutine (Vector3 target)
     {
-        bool hasgrabledHook = false;
         //gets the distance between the firepoint and the feet of the player
         float distanceToFeet = Vector3.Distance(Firepoint.transform.position, player.transform.position);
 
@@ -43,15 +42,13 @@ public class Grabling_gun : MonoBehaviour
         {
            Vector3 pos = Hook.transform.position += new Vector3(0, 0, 1);
             pos.y -= distanceToFeet;
-            hasgrabledHook = true;
             yield return new WaitForSeconds(0.1f);
         }
 
-        while(Vector3.Distance(target, player.transform.position) > DistanceAtGoal && hasgrabledHook == true)
+        while(Vector3.Distance(target, player.transform.position) > DistanceAtGoal)
         {
             Vector3 pos = player.transform.position += new Vector3(0, 0, 1);
             pos.y -= distanceToFeet;
-            hasgrabledHook = true;
             yield return new WaitForSeconds(0.1f);
         }
 
