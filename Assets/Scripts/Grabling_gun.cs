@@ -3,19 +3,37 @@ using System.Collections.Generic;
 using UnityEngine;
 using OVR;
 
+
+/// <summary>
+/// you can do the spiderman.
+/// </summary>
 public class Grabling_gun : MonoBehaviour
 {
-    public GameObject player;
-    public Transform Firepoint;
-    public GameObject Hook;
-    public float DistanceAtGoal;
+    
+
+
+    [SerializeField]
+    GameObject player;
+    [SerializeField]
+    Transform Firepoint;
+    [SerializeField]
+    GameObject Hook;
+    [SerializeField]
+    float DistanceAtGoal;
+    [HideInInspector]
+    public bool IsInHand = false;
+
 
     private void Update()
     {
-        if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.LTouch))
+        if (GetComponent<OVRGrabbable>().isgrabling == true)
         {
-            Fire();
+            if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.LTouch))
+            {
+                Fire();
+            }
         }
+
     }
 
     void Fire()
@@ -53,6 +71,12 @@ public class Grabling_gun : MonoBehaviour
         }
 
 
+    }
+
+    void reload ()
+    {
+        Hook.transform.position = Firepoint.transform.position;
+        Hook.transform.rotation = Firepoint.transform.rotation;
     }
 
 

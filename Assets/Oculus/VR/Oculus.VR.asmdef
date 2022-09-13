@@ -1,8 +1,10 @@
 {
     "name": "Oculus.VR",
+    "rootNamespace": "",
     "references": [
         "Unity.RenderPipelines.Universal.Runtime",
-        "Unity.XR.OpenXR"
+        "Unity.XR.OpenXR",
+        "GrapplingGame"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
