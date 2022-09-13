@@ -5,10 +5,17 @@ using OVR;
 
 public class HandRocket : MonoBehaviour
 {
-    public bool left;
+    
     public Rigidbody body;
     private const float SPEED = 600;
-    public GameObject hitGraple;
+
+    public Transform leftHand;
+    public Transform rightHand;
+
+    public SpringJoint leftSpring;
+    public SpringJoint rightSpring;
+   
+    
     
     // Start is called before the first frame update
     void Start()
@@ -19,22 +26,49 @@ public class HandRocket : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.LTouch) && left)
+        if(OVRInput.Get(OVRInput.Button.One, OVRInput.Controller.LTouch))
+        {
+            leftSpring.spring = 10;
+        }
+        else
+        {
+            leftSpring.spring = 0;
+        }
+
+        if(OVRInput.Get(OVRInput.Button.One, OVRInput.Controller.RTouch))
+        {
+            rightSpring.spring = 10;
+        }
+        else
+        {
+            rightSpring.spring = 0;
+        }
+        rightSpring.gameObject.SetActive(OVRInput.Get(OVRInput.Button.One, OVRInput.Controller.RTouch));
+
+        //Rocket
+        if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.LTouch))
         {
             
-            body.AddForce(transform.forward * SPEED * Time.deltaTime);
+            body.AddForce(leftHand.forward * SPEED * Time.deltaTime);
         }
-        if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.RTouch) && !left)
+        if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.RTouch))
         {
-            body.AddForce(transform.forward * SPEED * Time.deltaTime);
+            body.AddForce(rightHand.forward * SPEED * Time.deltaTime);
         }
 
-
-        if(OVRInput.GetDown(OVRInput.Button.One, OVRInput.Controller.LTouch) && left)
+        if(OVRInput.GetDown(OVRInput.Button.One, OVRInput.Controller.LTouch))
         {
             RaycastHit hit;
-            Physics.Raycast(transform.position + transform.forward, transform.forward, out hit);
-            Debug.Log(hit.point);
+            Physics.Raycast(leftHand.position + leftHand.forward, leftHand.forward, out hit);
+            leftSpring.connectedAnchor = hit.point;
         }
+
+        if (OVRInput.GetDown(OVRInput.Button.One, OVRInput.Controller.RTouch))
+        {
+            RaycastHit hit;
+            Physics.Raycast(rightHand.position + rightHand.forward, rightHand.forward, out hit);
+            rightSpring.connectedAnchor = hit.point;
+        }
+
     }
 }
