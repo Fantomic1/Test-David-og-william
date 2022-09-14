@@ -1682,6 +1682,8 @@ MonoBehaviour:
   rightSpring: {fileID: 673372105}
   leftLine: {fileID: 1361530750}
   rightLine: {fileID: 673372106}
+  laser: {fileID: 2100000, guid: f9c5081c1c0422648b2d2fb68d2d7d7b, type: 2}
+  rope: {fileID: 2100000, guid: 5347ced042c22344280334f798355ebb, type: 2}
 --- !u!1 &1980589060
 GameObject:
   m_ObjectHideFlags: 0

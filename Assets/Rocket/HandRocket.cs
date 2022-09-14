@@ -5,9 +5,13 @@ using OVR;
 
 public class HandRocket : MonoBehaviour
 {
-    
+    public float rocketPower;
+    const float MAXPOWER = 10;
+    const float ROCKETCONSUMPTION = 3;
+    private bool RocketOF = false;
+
     public Rigidbody body;
-    private const float SPEED = 800;
+    private const float SPEED = 2000;
 
     public Transform leftHand;
     public Transform rightHand;
@@ -20,6 +24,9 @@ public class HandRocket : MonoBehaviour
 
     private bool leftOn;
     private bool rightOn;
+
+    public Material laser;
+    public Material rope;
    
     
     
@@ -32,17 +39,33 @@ public class HandRocket : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //maxpower add
+        if(rocketPower < MAXPOWER)
+        {
+            rocketPower += Time.deltaTime;
+        }
         
-        
+        if(rocketPower < 0)
+        {
+            RocketOF = true;
+        }
+
+        if(rocketPower > MAXPOWER - 1)
+        {
+            RocketOF = false;
+        }
+
         //Rocket
-        if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.LTouch))
+        if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.LTouch) && rocketPower > 0 && !RocketOF)
         {
             
             body.AddForce(leftHand.forward * SPEED * Time.deltaTime);
+            rocketPower -= ROCKETCONSUMPTION * Time.deltaTime;
         }
-        if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.RTouch))
+        if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.RTouch) && rocketPower > 0 && !RocketOF)
         {
             body.AddForce(rightHand.forward * SPEED * Time.deltaTime);
+            rocketPower -= ROCKETCONSUMPTION * Time.deltaTime;
         }
 
         //graple
@@ -55,6 +78,7 @@ public class HandRocket : MonoBehaviour
         leftLine.SetPosition(0, leftHand.transform.position);
         if (leftOn)
         {
+            leftLine.material = laser;
             if (leftRender.collider != null)
             {
                 leftLine.SetPosition(1, leftRender.point);
@@ -66,6 +90,7 @@ public class HandRocket : MonoBehaviour
         }
         else
         {
+            leftLine.material = rope;
             leftLine.SetPosition(1, leftSpring.connectedAnchor);
         }
         
@@ -76,6 +101,7 @@ public class HandRocket : MonoBehaviour
         rightLine.SetPosition(0, rightHand.transform.position);
         if (rightOn)
         {
+            rightLine.material = laser;
             if (rightRender.collider != null)
             {
                 rightLine.SetPosition(1, rightRender.point);
@@ -87,6 +113,7 @@ public class HandRocket : MonoBehaviour
         }
         else
         {
+            rightLine.material = rope;
             rightLine.SetPosition(1, rightSpring.connectedAnchor);
         }
        
