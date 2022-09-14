@@ -26,13 +26,25 @@ public class Grabling_gun : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            Fire();
+        }
         if (GetComponent<OVRGrabbable>().isgrabling == true)
         {
             if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.LTouch))
             {
                 Fire();
             }
+            if (GetComponent<OVRGrabbable>().isgrabling == true)
+            {
+                if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.RTouch))
+                {
+                    Fire();
+                }
+            }
         }
+        
 
     }
 
