@@ -161,6 +161,7 @@ MonoBehaviour:
   m_snapOrientation: 0
   m_snapOffset: {fileID: 0}
   m_grabPoints: []
+  isgrabling: 0
 --- !u!54 &29955154
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -388,6 +389,7 @@ MonoBehaviour:
   m_snapOrientation: 0
   m_snapOffset: {fileID: 0}
   m_grabPoints: []
+  isgrabling: 0
 --- !u!54 &147519043
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -507,6 +509,7 @@ MonoBehaviour:
   m_snapOrientation: 0
   m_snapOffset: {fileID: 0}
   m_grabPoints: []
+  isgrabling: 0
 --- !u!54 &150005478
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -606,6 +609,7 @@ MonoBehaviour:
   m_snapOrientation: 0
   m_snapOffset: {fileID: 0}
   m_grabPoints: []
+  isgrabling: 0
 --- !u!65 &220728694
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -692,6 +696,7 @@ MonoBehaviour:
   m_snapOrientation: 0
   m_snapOffset: {fileID: 0}
   m_grabPoints: []
+  isgrabling: 0
 --- !u!54 &253560668
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -888,6 +893,7 @@ MonoBehaviour:
   m_snapOrientation: 0
   m_snapOffset: {fileID: 0}
   m_grabPoints: []
+  isgrabling: 0
 --- !u!65 &316381588
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1020,6 +1026,7 @@ MonoBehaviour:
   m_snapOrientation: 0
   m_snapOffset: {fileID: 0}
   m_grabPoints: []
+  isgrabling: 0
 --- !u!65 &396881299
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1249,6 +1256,7 @@ MonoBehaviour:
   m_snapOrientation: 0
   m_snapOffset: {fileID: 0}
   m_grabPoints: []
+  isgrabling: 0
 --- !u!65 &431419340
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1350,6 +1358,7 @@ MonoBehaviour:
   m_snapOrientation: 0
   m_snapOffset: {fileID: 0}
   m_grabPoints: []
+  isgrabling: 0
 --- !u!54 &451753872
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1554,6 +1563,7 @@ MonoBehaviour:
   m_snapOrientation: 0
   m_snapOffset: {fileID: 0}
   m_grabPoints: []
+  isgrabling: 0
 --- !u!65 &657152331
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1863,6 +1873,7 @@ MonoBehaviour:
   m_snapOrientation: 0
   m_snapOffset: {fileID: 0}
   m_grabPoints: []
+  isgrabling: 0
 --- !u!54 &699412436
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2011,6 +2022,7 @@ MonoBehaviour:
   m_snapOrientation: 0
   m_snapOffset: {fileID: 0}
   m_grabPoints: []
+  isgrabling: 0
 --- !u!54 &783233366
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2110,6 +2122,7 @@ MonoBehaviour:
   m_snapOrientation: 0
   m_snapOffset: {fileID: 0}
   m_grabPoints: []
+  isgrabling: 0
 --- !u!65 &826309188
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2211,6 +2224,7 @@ MonoBehaviour:
   m_snapOrientation: 0
   m_snapOffset: {fileID: 0}
   m_grabPoints: []
+  isgrabling: 0
 --- !u!54 &983421622
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2376,6 +2390,7 @@ MonoBehaviour:
   m_snapOrientation: 0
   m_snapOffset: {fileID: 0}
   m_grabPoints: []
+  isgrabling: 0
 --- !u!65 &1076857695
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2478,6 +2493,7 @@ MonoBehaviour:
   m_snapOrientation: 0
   m_snapOffset: {fileID: 0}
   m_grabPoints: []
+  isgrabling: 0
 --- !u!54 &1082659086
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2589,6 +2605,7 @@ MonoBehaviour:
   m_snapOrientation: 0
   m_snapOffset: {fileID: 0}
   m_grabPoints: []
+  isgrabling: 0
 --- !u!1001 &1095461627
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2790,6 +2807,7 @@ MonoBehaviour:
   m_snapOrientation: 0
   m_snapOffset: {fileID: 0}
   m_grabPoints: []
+  isgrabling: 0
 --- !u!65 &1282253189
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2922,6 +2940,7 @@ MonoBehaviour:
   m_snapOrientation: 0
   m_snapOffset: {fileID: 0}
   m_grabPoints: []
+  isgrabling: 0
 --- !u!65 &1303493391
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3049,6 +3068,7 @@ MonoBehaviour:
   m_snapOrientation: 0
   m_snapOffset: {fileID: 0}
   m_grabPoints: []
+  isgrabling: 0
 --- !u!54 &1385508853
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3148,6 +3168,7 @@ MonoBehaviour:
   m_snapOrientation: 0
   m_snapOffset: {fileID: 0}
   m_grabPoints: []
+  isgrabling: 0
 --- !u!65 &1393396247
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3280,6 +3301,7 @@ MonoBehaviour:
   m_snapOrientation: 0
   m_snapOffset: {fileID: 0}
   m_grabPoints: []
+  isgrabling: 0
 --- !u!65 &1421360052
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3449,6 +3471,7 @@ MonoBehaviour:
   m_snapOrientation: 0
   m_snapOffset: {fileID: 0}
   m_grabPoints: []
+  isgrabling: 0
 --- !u!65 &1461133718
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3581,6 +3604,7 @@ MonoBehaviour:
   m_snapOrientation: 0
   m_snapOffset: {fileID: 0}
   m_grabPoints: []
+  isgrabling: 0
 --- !u!65 &1509881917
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4086,6 +4110,7 @@ MonoBehaviour:
   m_snapOrientation: 0
   m_snapOffset: {fileID: 0}
   m_grabPoints: []
+  isgrabling: 0
 --- !u!54 &1643936153
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4249,6 +4274,7 @@ MonoBehaviour:
   m_snapOrientation: 0
   m_snapOffset: {fileID: 0}
   m_grabPoints: []
+  isgrabling: 0
 --- !u!65 &1652335307
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4351,6 +4377,7 @@ MonoBehaviour:
   m_snapOrientation: 0
   m_snapOffset: {fileID: 0}
   m_grabPoints: []
+  isgrabling: 0
 --- !u!114 &1678702104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4368,6 +4395,7 @@ MonoBehaviour:
   m_snapOrientation: 0
   m_snapOffset: {fileID: 0}
   m_grabPoints: []
+  isgrabling: 0
 --- !u!54 &1678702105
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4531,6 +4559,7 @@ MonoBehaviour:
   m_snapOrientation: 0
   m_snapOffset: {fileID: 0}
   m_grabPoints: []
+  isgrabling: 0
 --- !u!65 &1698451919
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4663,6 +4692,7 @@ MonoBehaviour:
   m_snapOrientation: 0
   m_snapOffset: {fileID: 0}
   m_grabPoints: []
+  isgrabling: 0
 --- !u!65 &1809718652
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4795,6 +4825,7 @@ MonoBehaviour:
   m_snapOrientation: 0
   m_snapOffset: {fileID: 0}
   m_grabPoints: []
+  isgrabling: 0
 --- !u!65 &1846129258
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4927,6 +4958,7 @@ MonoBehaviour:
   m_snapOrientation: 0
   m_snapOffset: {fileID: 0}
   m_grabPoints: []
+  isgrabling: 0
 --- !u!65 &1882492149
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5059,6 +5091,7 @@ MonoBehaviour:
   m_snapOrientation: 0
   m_snapOffset: {fileID: 0}
   m_grabPoints: []
+  isgrabling: 0
 --- !u!65 &1926495680
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5191,6 +5224,7 @@ MonoBehaviour:
   m_snapOrientation: 0
   m_snapOffset: {fileID: 0}
   m_grabPoints: []
+  isgrabling: 0
 --- !u!65 &2043827548
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5277,6 +5311,7 @@ MonoBehaviour:
   m_snapOrientation: 0
   m_snapOffset: {fileID: 0}
   m_grabPoints: []
+  isgrabling: 0
 --- !u!54 &2062767310
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5509,6 +5544,21 @@ MonoBehaviour:
   Firepoint: {fileID: 682007190}
   Hook: {fileID: 680062435}
   DistanceAtGoal: 0.5
+  IsInHand: 0
+--- !u!136 &2572771400373902961
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2572771400373902956}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.06306145
+  m_Height: 0.28768128
+  m_Direction: 0
+  m_Center: {x: 0.1831697, y: -0.05604693, z: 0.4929794}
 --- !u!1 &4720128793131137582 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3428870320541046056, guid: 4ac80334603ce6a41abc76bbdbd26083,
@@ -5532,6 +5582,7 @@ MonoBehaviour:
   m_snapOrientation: 0
   m_snapOffset: {fileID: 0}
   m_grabPoints: []
+  isgrabling: 0
 --- !u!54 &4720128793131137584
 Rigidbody:
   m_ObjectHideFlags: 0
