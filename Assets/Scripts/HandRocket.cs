@@ -4,6 +4,7 @@ using UnityEngine;
 using OVR;
 using TMPro;
 using UnityEngine.UI;
+using System.Runtime.InteropServices;
 
 public class HandRocket : MonoBehaviour
 {
@@ -19,30 +20,40 @@ public class HandRocket : MonoBehaviour
 
 
     [Header("Rocket")]
-    public float RocketFuel;
+    private float RocketFuel;
     const float MAXFUEl = 10;
     const float ROCKETCONSUMPTION = 1.5f;
-    private bool RocketOF = false;
+    private bool OverHeat = false;
     [SerializeField]
-    private Slider FuelUI;
+    private Image fill;
+    [SerializeField]
+    private Slider FuelUILeft;
+    [SerializeField]
+    private Slider FuelUIRight;
     public Rigidbody body;
     private const float SPEED = 2000;
 
 
 
     [Header("Spiderman")]
-    public Transform leftHand;
-    public Transform rightHand;
+    [SerializeField]
+    private float SwingDistance;
     public SpringJoint leftSpring;
     public SpringJoint rightSpring;
     public LineRenderer leftLine;
     public LineRenderer rightLine;
-    public Material laser;
     public Material rope;
     [SerializeField]
     private Transform RightLaserPos;
     [SerializeField]
     private Transform LeftLaserPos;
+    [SerializeField]
+    private LayerMask SwingLayers;
+    [SerializeField]
+    private Material CanSwing;
+    [SerializeField]
+    private Material CanNotSwing;
+
 
 
 
@@ -54,14 +65,18 @@ public class HandRocket : MonoBehaviour
 
     private void Start()
     {
-        FuelUI.maxValue = MAXFUEl;
-        FuelUI.value = RocketFuel;
+        FuelUILeft.maxValue = MAXFUEl;
+        FuelUILeft.value = RocketFuel;
+        FuelUIRight.maxValue = MAXFUEl;
+        FuelUIRight.value = RocketFuel;
+        fill.color = Color.green;
     }
 
     // Update is called once per frame
     void Update()
     {
-        FuelUI.value = RocketFuel;
+        FuelUILeft.value = RocketFuel;
+        FuelUIRight.value = RocketFuel;
 
         //maxpower add
         if (RocketFuel < MAXFUEl)
@@ -71,19 +86,30 @@ public class HandRocket : MonoBehaviour
         
         if(RocketFuel < 0)
         {
-            RocketOF = true;
+            OverHeat = true;
             
         }
 
         if(RocketFuel > MAXFUEl - 1)
         {
-            RocketOF = false;
+            OverHeat = false;
         }
 
-        //Rocket
-        if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.LTouch) && RocketFuel > 0 && !RocketOF)
+        if (OverHeat == true)
         {
-            body.AddForce(leftHand.forward * SPEED * Time.deltaTime);
+            fill.color = Color.red;
+        }
+        else
+        {
+            fill.color = Color.green;
+        }
+
+
+
+        //Rocket
+        if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.LTouch) && RocketFuel > 0 && !OverHeat)
+        {
+            body.AddForce(LeftLaserPos.forward * SPEED * Time.deltaTime);
             RocketFuel -= ROCKETCONSUMPTION * Time.deltaTime;
             LeftRocketFlames.Play();
             LeftRocketLight.SetActive(true);
@@ -93,9 +119,9 @@ public class HandRocket : MonoBehaviour
             LeftRocketFlames.Stop();
             LeftRocketLight.SetActive(false);
         }
-        if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.RTouch) && RocketFuel > 0 && !RocketOF)
+        if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.RTouch) && RocketFuel > 0 && !OverHeat)
         {
-            body.AddForce(rightHand.forward * SPEED * Time.deltaTime);
+            body.AddForce(RightLaserPos.forward * SPEED * Time.deltaTime);
             RocketFuel -= ROCKETCONSUMPTION * Time.deltaTime;
             RightRocketFlames.Play();
             RightRocketLight.SetActive(true);
@@ -113,18 +139,17 @@ public class HandRocket : MonoBehaviour
         //left
 
         RaycastHit leftRender;
-        Physics.Raycast(leftHand.position + leftHand.forward, leftHand.forward, out leftRender);
+        Physics.Raycast(LeftLaserPos.position + LeftLaserPos.forward, LeftLaserPos.forward, out leftRender);
         leftLine.SetPosition(0, LeftLaserPos.transform.position);
         if (leftOn)
         {
-            leftLine.material = laser;
             if (leftRender.collider != null)
             {
                 leftLine.SetPosition(1, leftRender.point);
             }
             else
             {
-                leftLine.SetPosition(1, leftHand.position + leftHand.forward * 50);
+                leftLine.SetPosition(1, RightLaserPos.position + RightLaserPos.forward * 50);
             }
         }
         else
@@ -136,18 +161,17 @@ public class HandRocket : MonoBehaviour
 
         //right
         RaycastHit rightRender;
-        Physics.Raycast(rightHand.position + rightHand.forward, rightHand.forward, out rightRender);
+        Physics.Raycast(RightLaserPos.position + RightLaserPos.forward, RightLaserPos.forward, out rightRender);
         rightLine.SetPosition(0, RightLaserPos.transform.position);
         if (rightOn)
         {
-            rightLine.material = laser;
             if (rightRender.collider != null)
             {
                 rightLine.SetPosition(1, rightRender.point);
             }
             else
             {
-                rightLine.SetPosition(1, rightHand.position + rightHand.forward * 50);
+                rightLine.SetPosition(1, RightLaserPos.position + RightLaserPos.forward * 50);
             }
         }
         else
@@ -177,27 +201,36 @@ public class HandRocket : MonoBehaviour
         if (OVRInput.GetDown(OVRInput.Button.One, OVRInput.Controller.LTouch))
         {
             RaycastHit hit;
-            Physics.Raycast(leftHand.position + leftHand.forward, leftHand.forward, out hit);
+            Physics.Raycast(LeftLaserPos.position + LeftLaserPos.forward, LeftLaserPos.forward, out hit);
             leftSpring.connectedAnchor = hit.point;
-            if(hit.collider != null)
+            if(hit.collider != null && hit.transform.gameObject.layer == LayerMask.NameToLayer("Swingable") && Vector3.Distance(hit.transform.position, LeftLaserPos.transform.position) <= SwingDistance)
             {
+                leftLine.material = CanSwing;
                 leftSpring.connectedBody = null;
                 body.WakeUp();
                 leftOn = false;
+            }
+            else
+            {
+                leftLine.material = CanNotSwing;
             }
         }
 
         if (OVRInput.GetDown(OVRInput.Button.One, OVRInput.Controller.RTouch))
         {
             RaycastHit hit;
-            Physics.Raycast(rightHand.position + rightHand.forward, rightHand.forward, out hit);
+            Physics.Raycast(RightLaserPos.position + RightLaserPos.forward, RightLaserPos.forward, out hit);
             rightSpring.connectedAnchor = hit.point;
 
-            if (hit.collider != null)
+            if (hit.collider != null && hit.transform.gameObject.layer == LayerMask.NameToLayer("Swingable") && Vector3.Distance(hit.transform.position, RightLaserPos.transform.position) <= SwingDistance)
             {
+                rightLine.material = CanSwing;
                 rightSpring.connectedBody = null;
                 body.WakeUp();
                 rightOn = false;
+            }else
+            {
+                rightLine.material = CanNotSwing;
             }
         }
 
