@@ -985,7 +985,7 @@ MonoBehaviour:
   FuelUILeft: {fileID: 2212861649717501920}
   FuelUIRight: {fileID: 5362511115746113867}
   body: {fileID: 2787545073617608907}
-  SwingDistance: 300
+  SwingDistance: 100
   leftSpring: {fileID: 2787545073032122352}
   rightSpring: {fileID: 2787545074492102468}
   leftLine: {fileID: 2787545073032122355}

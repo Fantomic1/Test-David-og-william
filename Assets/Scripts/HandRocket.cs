@@ -148,13 +148,16 @@ public class HandRocket : MonoBehaviour
         leftLine.SetPosition(0, LeftLaserPos.transform.position);
         if (leftOn)
         {
-            if (leftRender.collider != null)
+            if (leftRender.collider != null && leftRender.transform.gameObject.layer == LayerMask.NameToLayer("Swingable") && Vector3.Distance(leftRender.transform.position, LeftLaserPos.transform.position) <= SwingDistance)
             {
                 leftLine.SetPosition(1, leftRender.point);
+                leftLine.material = CanSwing;
+
             }
             else
             {
                 leftLine.SetPosition(1, RightLaserPos.position + RightLaserPos.forward * 50);
+                leftLine.material = CanNotSwing;
             }
         }
         else
@@ -170,13 +173,15 @@ public class HandRocket : MonoBehaviour
         rightLine.SetPosition(0, RightLaserPos.transform.position);
         if (rightOn)
         {
-            if (rightRender.collider != null)
+            if (rightRender.collider != null && rightRender.transform.gameObject.layer == LayerMask.NameToLayer("Swingable") && Vector3.Distance(rightRender.transform.position, RightLaserPos.transform.position) <= SwingDistance)
             {
                 rightLine.SetPosition(1, rightRender.point);
+                rightLine.material = CanSwing;
             }
             else
             {
                 rightLine.SetPosition(1, RightLaserPos.position + RightLaserPos.forward * 50);
+                rightLine.material = CanNotSwing;
             }
         }
         else
@@ -210,15 +215,11 @@ public class HandRocket : MonoBehaviour
             leftSpring.connectedAnchor = hit.point;
             if(hit.collider != null && hit.transform.gameObject.layer == LayerMask.NameToLayer("Swingable") && Vector3.Distance(hit.transform.position, LeftLaserPos.transform.position) <= SwingDistance)
             {
-                leftLine.material = CanSwing;
                 leftSpring.connectedBody = null;
                 body.WakeUp();
                 leftOn = false;
             }
-            else
-            {
-                leftLine.material = CanNotSwing;
-            }
+
         }
 
         if (OVRInput.GetDown(OVRInput.Button.One, OVRInput.Controller.RTouch))
@@ -229,13 +230,9 @@ public class HandRocket : MonoBehaviour
 
             if (hit.collider != null && hit.transform.gameObject.layer == LayerMask.NameToLayer("Swingable") && Vector3.Distance(hit.transform.position, RightLaserPos.transform.position) <= SwingDistance)
             {
-                rightLine.material = CanSwing;
                 rightSpring.connectedBody = null;
                 body.WakeUp();
                 rightOn = false;
-            }else
-            {
-                rightLine.material = CanNotSwing;
             }
         }
 
