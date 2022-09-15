@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using OVR;
 using TMPro;
+using UnityEngine.UI;
 
 public class HandRocket : MonoBehaviour
 {
@@ -16,11 +17,14 @@ public class HandRocket : MonoBehaviour
     [SerializeField]
     private GameObject LeftRocketLight;
 
-    public float rocketPower;
-    const float MAXPOWER = 10;
-    const float ROCKETCONSUMPTION = 3;
-    private bool RocketOF = false;
 
+    [Header("Rocket")]
+    public float RocketFuel;
+    const float MAXFUEl = 10;
+    const float ROCKETCONSUMPTION = 1.5f;
+    private bool RocketOF = false;
+    [SerializeField]
+    private Slider FuelUI;
     public Rigidbody body;
     private const float SPEED = 2000;
 
@@ -45,36 +49,42 @@ public class HandRocket : MonoBehaviour
 
     private bool leftOn;
     private bool rightOn;
-    
-   
-    
 
+
+
+    private void Start()
+    {
+        FuelUI.maxValue = MAXFUEl;
+        FuelUI.value = RocketFuel;
+    }
 
     // Update is called once per frame
     void Update()
     {
+        FuelUI.value = RocketFuel;
+
         //maxpower add
-        if(rocketPower < MAXPOWER)
+        if (RocketFuel < MAXFUEl)
         {
-            rocketPower += Time.deltaTime;
+            RocketFuel += Time.deltaTime;
         }
         
-        if(rocketPower < 0)
+        if(RocketFuel < 0)
         {
             RocketOF = true;
             
         }
 
-        if(rocketPower > MAXPOWER - 1)
+        if(RocketFuel > MAXFUEl - 1)
         {
             RocketOF = false;
         }
 
         //Rocket
-        if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.LTouch) && rocketPower > 0 && !RocketOF)
+        if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.LTouch) && RocketFuel > 0 && !RocketOF)
         {
             body.AddForce(leftHand.forward * SPEED * Time.deltaTime);
-            rocketPower -= ROCKETCONSUMPTION * Time.deltaTime;
+            RocketFuel -= ROCKETCONSUMPTION * Time.deltaTime;
             LeftRocketFlames.Play();
             LeftRocketLight.SetActive(true);
         }
@@ -83,10 +93,10 @@ public class HandRocket : MonoBehaviour
             LeftRocketFlames.Stop();
             LeftRocketLight.SetActive(false);
         }
-        if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.RTouch) && rocketPower > 0 && !RocketOF)
+        if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.RTouch) && RocketFuel > 0 && !RocketOF)
         {
             body.AddForce(rightHand.forward * SPEED * Time.deltaTime);
-            rocketPower -= ROCKETCONSUMPTION * Time.deltaTime;
+            RocketFuel -= ROCKETCONSUMPTION * Time.deltaTime;
             RightRocketFlames.Play();
             RightRocketLight.SetActive(true);
         }
