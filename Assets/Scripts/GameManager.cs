@@ -9,32 +9,49 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+
+
+    [Header("GamePlay")]
     [SerializeField]
     Collider StartChecker;
     [SerializeField]
     Collider EndChecker;
-
-    [SerializeField]
-    GameObject Player;
-
     [SerializeField]
     private TMP_Text Clock;
 
     int timer;
 
+    [Header("Important stuff")]
+    [SerializeField]
+    GameObject Player;
+
+    
+
 
     private void Update()
     {
-        Clock.text = timer.ToString();
+        if(Clock != null)
+        {
+            Clock.text = timer.ToString();
+        }
+        
     }
     public void FinishGame ()
     {
-        Clock.text = "";
+        if(Clock != null)
+        {
+            Clock.text = "";
+        }
+        
     }
 
     public void StartGame ()
     {
-        StartCoroutine(Timer());
+        if (Clock != null)
+        {
+            StartCoroutine(Timer());
+        }
+        
     }
 
     //Resets scene

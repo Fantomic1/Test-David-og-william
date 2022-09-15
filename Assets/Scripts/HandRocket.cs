@@ -156,7 +156,7 @@ public class HandRocket : MonoBehaviour
             }
             else
             {
-                leftLine.SetPosition(1, RightLaserPos.position + RightLaserPos.forward * 50);
+                leftLine.SetPosition(1, LeftLaserPos.position + LeftLaserPos.forward * 50);
                 leftLine.material = CanNotSwing;
             }
         }
