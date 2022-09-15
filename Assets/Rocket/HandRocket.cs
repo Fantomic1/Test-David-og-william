@@ -2,9 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using OVR;
+using TMPro;
 
 public class HandRocket : MonoBehaviour
 {
+    [Header("Particle System")]
+    [SerializeField]
+    private ParticleSystem RightRocketFlames;
+    [SerializeField]
+    private ParticleSystem LeftRocketFlames;
+    [SerializeField]
+    private GameObject RightRocketLight;
+    [SerializeField]
+    private GameObject LeftRocketLight;
+
     public float rocketPower;
     const float MAXPOWER = 10;
     const float ROCKETCONSUMPTION = 3;
@@ -29,12 +40,7 @@ public class HandRocket : MonoBehaviour
     public Material rope;
    
     
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+
 
     // Update is called once per frame
     void Update()
@@ -48,6 +54,7 @@ public class HandRocket : MonoBehaviour
         if(rocketPower < 0)
         {
             RocketOF = true;
+            
         }
 
         if(rocketPower > MAXPOWER - 1)
@@ -58,21 +65,35 @@ public class HandRocket : MonoBehaviour
         //Rocket
         if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.LTouch) && rocketPower > 0 && !RocketOF)
         {
-            
             body.AddForce(leftHand.forward * SPEED * Time.deltaTime);
             rocketPower -= ROCKETCONSUMPTION * Time.deltaTime;
+            LeftRocketFlames.Play();
+            LeftRocketLight.SetActive(true);
+        }
+        else
+        {
+            LeftRocketFlames.Stop();
+            LeftRocketLight.SetActive(false);
         }
         if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.RTouch) && rocketPower > 0 && !RocketOF)
         {
             body.AddForce(rightHand.forward * SPEED * Time.deltaTime);
             rocketPower -= ROCKETCONSUMPTION * Time.deltaTime;
+            RightRocketFlames.Play();
+            RightRocketLight.SetActive(true);
         }
+        else
+        {
+            RightRocketFlames.Stop();
+            RightRocketLight.SetActive(false);
+        }
+
 
         //graple
 
         //line renderer
         //left
-        
+
         RaycastHit leftRender;
         Physics.Raycast(leftHand.position + leftHand.forward, leftHand.forward, out leftRender);
         leftLine.SetPosition(0, leftHand.transform.position);
