@@ -25,7 +25,9 @@ public class HandRocket : MonoBehaviour
     const float ROCKETCONSUMPTION = 1.5f;
     private bool OverHeat = false;
     [SerializeField]
-    private Image fill;
+    private Image fillRight;
+    [SerializeField]
+    private Image fillLeft;
     [SerializeField]
     private Slider FuelUILeft;
     [SerializeField]
@@ -69,7 +71,8 @@ public class HandRocket : MonoBehaviour
         FuelUILeft.value = RocketFuel;
         FuelUIRight.maxValue = MAXFUEl;
         FuelUIRight.value = RocketFuel;
-        fill.color = Color.green;
+        fillRight.color = Color.green;
+        fillLeft.color = Color.green;
     }
 
     // Update is called once per frame
@@ -97,11 +100,13 @@ public class HandRocket : MonoBehaviour
 
         if (OverHeat == true)
         {
-            fill.color = Color.red;
+            fillRight.color = Color.red;
+            fillLeft.color = Color.red;
         }
         else
         {
-            fill.color = Color.green;
+            fillRight.color = Color.green;
+            fillLeft.color = Color.green;
         }
 
 
