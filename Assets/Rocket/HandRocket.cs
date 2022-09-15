@@ -24,20 +24,28 @@ public class HandRocket : MonoBehaviour
     public Rigidbody body;
     private const float SPEED = 2000;
 
+
+
+    [Header("Spiderman")]
     public Transform leftHand;
     public Transform rightHand;
-
     public SpringJoint leftSpring;
     public SpringJoint rightSpring;
-
     public LineRenderer leftLine;
     public LineRenderer rightLine;
+    public Material laser;
+    public Material rope;
+    [SerializeField]
+    private Transform RightLaserPos;
+    [SerializeField]
+    private Transform LeftLaserPos;
+
+
+
 
     private bool leftOn;
     private bool rightOn;
-
-    public Material laser;
-    public Material rope;
+    
    
     
 
@@ -96,7 +104,7 @@ public class HandRocket : MonoBehaviour
 
         RaycastHit leftRender;
         Physics.Raycast(leftHand.position + leftHand.forward, leftHand.forward, out leftRender);
-        leftLine.SetPosition(0, leftHand.transform.position);
+        leftLine.SetPosition(0, LeftLaserPos.transform.position);
         if (leftOn)
         {
             leftLine.material = laser;
@@ -119,7 +127,7 @@ public class HandRocket : MonoBehaviour
         //right
         RaycastHit rightRender;
         Physics.Raycast(rightHand.position + rightHand.forward, rightHand.forward, out rightRender);
-        rightLine.SetPosition(0, rightHand.transform.position);
+        rightLine.SetPosition(0, RightLaserPos.transform.position);
         if (rightOn)
         {
             rightLine.material = laser;
