@@ -14,12 +14,12 @@ GameObject:
   - component: {fileID: 8619714463778026774}
   - component: {fileID: 1834140527826115505}
   - component: {fileID: 5844462531253135177}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Airportich
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &4081280900761588806
 Transform:
