@@ -6,6 +6,7 @@ public class BGMusic : MonoBehaviour
 {
     public AudioSource Source;
     public AudioClip sound;
+    public AudioSource wind;
 
     // Start is called before the first frame update
     void Start()
@@ -20,5 +21,7 @@ public class BGMusic : MonoBehaviour
         {
             Source.PlayOneShot(sound);
         }
+
+        wind.pitch = Input.GetAxis("Vertical") * 3;
     }
 }
