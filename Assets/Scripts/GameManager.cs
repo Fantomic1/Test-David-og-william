@@ -106,9 +106,9 @@ public class GameManager : MonoBehaviour
             }
             
         }
-
-        PauseTime();
+        
         Menucontrol();
+        PauseTime();
     }
     public void LostGame()
     {
@@ -120,10 +120,10 @@ public class GameManager : MonoBehaviour
 
     void CloseALL ()
     {
+        MenuList[0].SetActive(false);
         MenuList[1].SetActive(false);
         MenuList[2].SetActive(false);
-        MenuList[1].SetActive(false);
-        MenuList[1].SetActive(false);
+        MenuList[3].SetActive(false);
     }
 
 
