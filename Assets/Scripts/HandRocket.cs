@@ -266,9 +266,12 @@ public class HandRocket : MonoBehaviour
             if (OVRInput.GetDown(OVRInput.Button.Two, OVRInput.Controller.LTouch))
             {
             gameManager.Reset();
+<<<<<<< HEAD
             
            
 
+=======
+>>>>>>> e8fc3488ad7909dc9673d58aab9dfb648f073906
             }
     }
 }
