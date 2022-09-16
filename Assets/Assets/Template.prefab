@@ -552,6 +552,7 @@ GameObject:
   - component: {fileID: 9050970420741174652}
   - component: {fileID: 9050970420741174655}
   - component: {fileID: 9050970420741174654}
+  - component: {fileID: 3727064267867707251}
   m_Layer: 5
   m_Name: Template
   m_TagString: Untagged
@@ -642,6 +643,25 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &3727064267867707251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9050970420741174649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7aaf960227867044282d921171d2d7ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 3
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  pointer: {fileID: 0}
+  sortOrder: 0
 --- !u!1 &9050970421215142605
 GameObject:
   m_ObjectHideFlags: 0
