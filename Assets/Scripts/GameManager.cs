@@ -11,6 +11,13 @@ using UnityEngine.Timeline;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("UI")]
+    [SerializeField]
+    private Text WinScore;
+    [SerializeField]
+    private List<GameObject> Stars;
+    [SerializeField]
+    private Text LoseScore;
 
 
     [Header("GamePlay")]
@@ -85,6 +92,21 @@ public class GameManager : MonoBehaviour
         {
             Clock.text = "";
         }
+        WinScore.text = ("Your Time: " + timer);
+        if(timer < MaxTimeToComplete / 2)
+        {
+            Stars[1].SetActive(true);
+            if (timer < MaxTimeToComplete / 3)
+            {
+                Stars[2].SetActive(true);
+                if (timer < MaxTimeToComplete / 4)
+                {
+                    Stars[3].SetActive(true);
+                }
+            }
+            
+        }
+
         PauseTime();
         Menucontrol();
     }
@@ -93,11 +115,22 @@ public class GameManager : MonoBehaviour
         MenuList[3].SetActive(true);
         PauseTime();
         Menucontrol();
+        LoseScore.text = ("Your Time: " + timer);
     }
+
+    void CloseALL ()
+    {
+        MenuList[1].SetActive(false);
+        MenuList[2].SetActive(false);
+        MenuList[1].SetActive(false);
+        MenuList[1].SetActive(false);
+    }
+
 
     //settings menu
     public void Settings ()
     {
+        CloseALL();
         MenuList[1].SetActive(true);
     }
     //pause menu
@@ -178,7 +211,11 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         UnPauseTime();
         OutOfMenucontrol();
-
+            Stars[1].SetActive(false);
+            Stars[2].SetActive(false);
+            Stars[3].SetActive(false);
+        
+        
     }
     //Quits game
     public void Quit()
