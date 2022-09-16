@@ -19,14 +19,13 @@ public class ChekpointManager : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void ChekpointTagged(GameObject Chekpoint)
     {
-        Destroy(other.gameObject);
-        if (other.gameObject == Chekpoints[currentchekpoint])
+        if(Chekpoint == Chekpoints[currentchekpoint])
         {
-            currentchekpoint++;
-            Destroy(other.gameObject);
+            Destroy(Chekpoints[currentchekpoint]);
             Chekpoints[currentchekpoint + 1].GetComponent<MeshRenderer>().material = Shine;
+            currentchekpoint++;
         }
     }
 }
