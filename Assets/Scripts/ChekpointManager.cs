@@ -7,6 +7,8 @@ public class ChekpointManager : MonoBehaviour
     public GameObject[] Chekpoints;
     private int currentchekpoint = 0;
     public Material Shine;
+
+    public BGMusic bGmusic;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +28,8 @@ public class ChekpointManager : MonoBehaviour
             Destroy(Chekpoints[currentchekpoint]);
             Chekpoints[currentchekpoint + 1].GetComponent<MeshRenderer>().material = Shine;
             currentchekpoint++;
+
+            bGmusic.ChekSound();
         }
     }
 }
