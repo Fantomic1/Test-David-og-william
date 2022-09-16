@@ -8,8 +8,11 @@ public class BGMusic : MonoBehaviour
     public AudioSource Source;
     public AudioClip sound;
     public AudioSource wind;
-    public AudioSource rocket;
+    public AudioSource rocketLeft;
+    public AudioSource rocketRight;
     public Rigidbody body;
+    public bool leftOn = false;
+    public bool rightOn = false;
 
     // Start is called before the first frame update
     void Start()
@@ -22,13 +25,22 @@ public class BGMusic : MonoBehaviour
     {
         float Speed = (Mathf.Clamp(body.velocity.magnitude, 0, 100) / 100) * 3;
         wind.pitch =  Speed;
-        if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.LTouch)  || OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.RTouch))
+        if (leftOn)
         {
-            rocket.pitch = 3;
+            rocketLeft.pitch = 3;
         }
         else
         {
-            rocket.pitch = 0;
+            rocketLeft.pitch = 0;
+        }
+
+        if (rightOn)
+        {
+            rocketRight.pitch = 3;
+        }
+        else
+        {
+            rocketRight.pitch = 0;
         }
     }
 

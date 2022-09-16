@@ -10,6 +10,7 @@ public class HandRocket : MonoBehaviour
 {
     [Header("UI")]
     public GameManager gameManager;
+    public BGMusic bgmusic; 
     
 
 
@@ -125,6 +126,7 @@ public class HandRocket : MonoBehaviour
             //Rocket
             if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.LTouch) && RocketFuel > 0 && !OverHeat)
             {
+                bgmusic.leftOn = true;
                 body.AddForce(LeftLaserPos.forward * SPEED * Time.deltaTime);
                 RocketFuel -= ROCKETCONSUMPTION * Time.deltaTime;
                 LeftRocketFlames.Play();
@@ -132,18 +134,21 @@ public class HandRocket : MonoBehaviour
             }
             else
             {
+                bgmusic.leftOn = false;
                 LeftRocketFlames.Stop();
                 LeftRocketLight.SetActive(false);
             }
             if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.RTouch) && RocketFuel > 0 && !OverHeat)
             {
                 body.AddForce(RightLaserPos.forward * SPEED * Time.deltaTime);
+                bgmusic.rightOn = true;
                 RocketFuel -= ROCKETCONSUMPTION * Time.deltaTime;
                 RightRocketFlames.Play();
                 RightRocketLight.SetActive(true);
             }
             else
             {
+                bgmusic.rightOn = false;
                 RightRocketFlames.Stop();
                 RightRocketLight.SetActive(false);
             }
