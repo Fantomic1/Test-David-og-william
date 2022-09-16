@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
     private GameObject ZeroPoint;
 
     [HideInInspector]
-    public bool isPaused;
+    public bool isPaused = false;
 
     [Header("Settings=1, Pause=2, Lost=3, Won=4")]
     [SerializeField]
@@ -59,10 +59,8 @@ public class GameManager : MonoBehaviour
             Reset();
         }
 
-        if(Clock != null)
-        {
             Clock.text = timer.ToString();
-        }
+        
 
         //If you have run out of time
         if (timer <= MaxTimeToComplete)
@@ -75,10 +73,9 @@ public class GameManager : MonoBehaviour
     public void FinishGame ()
     {
         MenuList[3].SetActive(true);
-        if (Clock != null)
-        {
+  
             Clock.text = "";
-        }
+       
         WinScore.text = ("Your Time: " + timer);
         if(timer < MaxTimeToComplete / 2)
         {
@@ -140,12 +137,10 @@ public class GameManager : MonoBehaviour
 
     public void StartGame ()
     {
-        if (Clock != null)
-        {
             TimeUI.maxValue = MaxTimeToComplete;
             StartCoroutine(Timer());
             TimeUI.value = timer;
-        }
+
 
         
     }

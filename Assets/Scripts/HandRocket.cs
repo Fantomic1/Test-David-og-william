@@ -265,17 +265,9 @@ public class HandRocket : MonoBehaviour
 
             if (OVRInput.GetDown(OVRInput.Button.Two, OVRInput.Controller.LTouch))
             {
+            gameManager.Reset();
             
-            if (gameManager.isPaused == false)
-            {
-                gameManager.Pause();
-            }
-
-            if (gameManager.isPaused == true)
-            {
-                gameManager.UnPauseTime();
-                gameManager.BackToGame();
-            }
+           
 
             }
     }
