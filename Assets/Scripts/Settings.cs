@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
@@ -15,6 +16,10 @@ public class Settings : MonoBehaviour
     private float AudioLevel;
 
 
+    void OnDropdownValueChanged (DropdownMenu changed)
+    {
+    }
+
     private void Start()
     {
         AudioSlider.maxValue = 10;
@@ -28,6 +33,8 @@ public class Settings : MonoBehaviour
         AudioLevel = AudioSlider.value;
 
     }
+
+    
 
 
 
