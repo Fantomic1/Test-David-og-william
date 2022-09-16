@@ -17,6 +17,8 @@ EditorBuildSettings:
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 7401a2e10c0777643a0e32cff4d1d0c7,
       type: 2}
+    UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: f3e1e4fb3d6933240a41eff7223367fa,
+      type: 2}
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 76fadd157dd3ee64ca47c589e9821a35,
       type: 2}
     com.unity.adaptiveperformance.samsung.android.provider_settings: {fileID: 11400000,

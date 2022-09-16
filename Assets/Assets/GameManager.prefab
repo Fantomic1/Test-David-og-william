@@ -44,6 +44,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60ee601fc455d65458850898825d6802, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WinScore: {fileID: 0}
+  Stars:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  LoseScore: {fileID: 0}
   StartChecker: {fileID: 0}
   EndChecker: {fileID: 0}
   Clock: {fileID: 0}
@@ -53,4 +59,15 @@ MonoBehaviour:
   MaxAmountAwayFromZero: 3000
   Player: {fileID: 0}
   ZeroPoint: {fileID: 0}
-  MenuList: []
+  RightHand: {fileID: 0}
+  LeftHand: {fileID: 0}
+  RightController: {fileID: 0}
+  LeftController: {fileID: 0}
+  RightLineRenderer: {fileID: 0}
+  LeftLineRenderer: {fileID: 0}
+  isPaused: 0
+  MenuList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
