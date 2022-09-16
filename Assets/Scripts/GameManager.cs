@@ -137,8 +137,8 @@ public class GameManager : MonoBehaviour
     public void Pause ()
     {
         MenuList[1].SetActive(true);
-        PauseTime();
         Menucontrol();
+        PauseTime();
     }
     public void Menucontrol ()
     {
