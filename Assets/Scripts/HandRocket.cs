@@ -8,6 +8,10 @@ using System.Runtime.InteropServices;
 
 public class HandRocket : MonoBehaviour
 {
+    [Header("UI")]
+    public GameManager gameManager;
+
+
     [Header("Particle System")]
     [SerializeField]
     private ParticleSystem RightRocketFlames;
@@ -230,6 +234,15 @@ public class HandRocket : MonoBehaviour
                 rightOn = false;
             }
         }
+
+
+        if (OVRInput.GetDown(OVRInput.Button.Two, OVRInput.Controller.LTouch))
+        {
+            gameManager.Pause();
+        }
+
+
+
 
     }
 }
