@@ -74,6 +74,15 @@ public class HandRocket : MonoBehaviour
         FuelUIRight.maxValue = MAXFUEl;
         FuelUIRight.value = RocketFuel;
         fillRight.color = Color.green;
+
+        leftSpring.connectedAnchor = transform.position;
+        rightSpring.connectedAnchor = transform.position;
+
+        rightSpring.connectedBody = body;
+        rightOn = true;
+
+        leftSpring.connectedBody = body;
+        leftOn = true;
     }
 
     // Update is called once per frame
