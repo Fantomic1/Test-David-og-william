@@ -1255,6 +1255,8 @@ MonoBehaviour:
       m_Image: {fileID: 0}
     - m_Text: Low
       m_Image: {fileID: 0}
+    - m_Text: Ultra Low
+      m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2217,3 +2219,22 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 2285715970943992624}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &7071776440740853321 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9050970420741174649, guid: 60f634f0de1ea1443bf3c15630473a66,
+    type: 3}
+  m_PrefabInstance: {fileID: 2285715970943992624}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1303347594371974187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7071776440740853321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34f405adbfcf8b94387523015510cf7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AudioSlider: {fileID: 0}
