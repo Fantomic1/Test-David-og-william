@@ -11,14 +11,10 @@ public class Settings : MonoBehaviour
     [SerializeField]
     private UnityEngine.UI.Slider AudioSlider;
     [SerializeField]
-    private DropdownMenu QualityLevel;
+    private Dropdown QualityLevel;
 
     private float AudioLevel;
 
-
-    void OnDropdownValueChanged (DropdownMenu changed)
-    {
-    }
 
     private void Start()
     {

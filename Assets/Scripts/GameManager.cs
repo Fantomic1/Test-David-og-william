@@ -13,11 +13,11 @@ public class GameManager : MonoBehaviour
 {
     [Header("UI")]
     [SerializeField]
-    private Text WinScore;
+    private TMP_Text WinScore;
     [SerializeField]
     private List<GameObject> Stars;
     [SerializeField]
-    private Text LoseScore;
+    private TMP_Text LoseScore;
 
 
     [Header("GamePlay")]
@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour
     private GameObject LeftLineRenderer;
 
 
-
+    [HideInInspector]
     public bool isPaused;
 
     [Header("Settings=1, Pause=2, Lost=3, Won=4")]
@@ -131,12 +131,12 @@ public class GameManager : MonoBehaviour
     public void Settings ()
     {
         CloseALL();
-        MenuList[1].SetActive(true);
+        MenuList[0].SetActive(true);
     }
     //pause menu
     public void Pause ()
     {
-        MenuList[2].SetActive(true);
+        MenuList[1].SetActive(true);
         PauseTime();
         Menucontrol();
     }
@@ -187,17 +187,17 @@ public class GameManager : MonoBehaviour
     //Gets you back to menu
     public void BackToMenu()
     {
-        MenuList[1].SetActive(false);
-        MenuList[2].SetActive(true);
-        MenuList[1].SetActive(false);
-        MenuList[1].SetActive(false);
+        MenuList[0].SetActive(false);
+        MenuList[1].SetActive(true);
+        MenuList[2].SetActive(false);
+        MenuList[3].SetActive(false);
     }
     public void BackToGame()
     {
+        MenuList[0].SetActive(false);
         MenuList[1].SetActive(false);
         MenuList[2].SetActive(false);
         MenuList[3].SetActive(false);
-        MenuList[4].SetActive(false);
         UnPauseTime();
         OutOfMenucontrol();
 
@@ -211,8 +211,8 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         UnPauseTime();
         OutOfMenucontrol();
+            Stars[0].SetActive(false);
             Stars[1].SetActive(false);
-            Stars[2].SetActive(false);
             Stars[3].SetActive(false);
         
         
