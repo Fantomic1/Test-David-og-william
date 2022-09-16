@@ -1016,7 +1016,6 @@ MonoBehaviour:
   RightRocketLight: {fileID: 2498438186095747315}
   LeftRocketLight: {fileID: 3257467689475931502}
   fillRight: {fileID: 244693052318937688}
-  FuelUILeft: {fileID: 3684768246319650011}
   FuelUIRight: {fileID: 4375819757593676102}
   body: {fileID: 2787545073617608907}
   SwingDistance: 300
@@ -1769,18 +1768,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1496909880386520331}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &3684768246319650011 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2874698063521485264, guid: 09d3f0a1735f59e4fa913b066f67d638,
-    type: 3}
-  m_PrefabInstance: {fileID: 1496909880386520331}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!198 &6166159327818439392 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 4707544362079379435, guid: 09d3f0a1735f59e4fa913b066f67d638,
@@ -1818,6 +1805,11 @@ PrefabInstance:
     - target: {fileID: 894545220625914156, guid: 09d3f0a1735f59e4fa913b066f67d638,
         type: 3}
       propertyPath: m_BoundingSphereOverride.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2190337224261065806, guid: 09d3f0a1735f59e4fa913b066f67d638,
+        type: 3}
+      propertyPath: m_CullTransparentMesh
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5959132656149801705, guid: 09d3f0a1735f59e4fa913b066f67d638,
