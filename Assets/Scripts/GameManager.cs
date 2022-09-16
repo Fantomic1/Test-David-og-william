@@ -137,8 +137,8 @@ public class GameManager : MonoBehaviour
     public void Pause ()
     {
         MenuList[1].SetActive(true);
-        PauseTime();
         Menucontrol();
+        PauseTime();
     }
     public void Menucontrol ()
     {
@@ -213,7 +213,7 @@ public class GameManager : MonoBehaviour
         OutOfMenucontrol();
             Stars[0].SetActive(false);
             Stars[1].SetActive(false);
-            Stars[3].SetActive(false);
+            Stars[2].SetActive(false);
         
         
     }
