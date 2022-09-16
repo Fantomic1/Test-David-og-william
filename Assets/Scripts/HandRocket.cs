@@ -10,6 +10,7 @@ public class HandRocket : MonoBehaviour
 {
     [Header("UI")]
     public GameManager gameManager;
+    
 
 
     [Header("Particle System")]

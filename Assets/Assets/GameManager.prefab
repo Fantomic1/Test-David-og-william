@@ -48,7 +48,7 @@ MonoBehaviour:
   EndChecker: {fileID: 0}
   Clock: {fileID: 0}
   TimeLimit: {fileID: 0}
-  MaxTimeToComplete: 0
+  MaxTimeToComplete: 1000
   MaxFallIntoVoid: -10
   MaxAmountAwayFromZero: 3000
   Player: {fileID: 0}

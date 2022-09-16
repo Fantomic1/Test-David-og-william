@@ -6,6 +6,7 @@ using TMPro.Examples;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Timeline;
 
 
 public class GameManager : MonoBehaviour
@@ -34,6 +35,14 @@ public class GameManager : MonoBehaviour
     private GameObject Player;
     [SerializeField]
     private GameObject ZeroPoint;
+    [SerializeField]
+    private GameObject RightHand;
+    [SerializeField]
+    private GameObject LeftHand;
+    [SerializeField]
+    private GameObject RightController;
+    [SerializeField]
+    private GameObject LeftController;
 
     [Header("Settings=1, Pause=2, Lost=3, Won=4")]
     [SerializeField]
@@ -68,10 +77,14 @@ public class GameManager : MonoBehaviour
         {
             Clock.text = "";
         }
+        PauseTime();
+        Menucontrol();
     }
     public void LostGame()
     {
         MenuList[3].SetActive(true);
+        PauseTime();
+        Menucontrol();
     }
 
     //settings menu
@@ -83,6 +96,28 @@ public class GameManager : MonoBehaviour
     public void Pause ()
     {
         MenuList[2].SetActive(true);
+        PauseTime();
+        Menucontrol();
+    }
+    public void Menucontrol ()
+    {
+        RightHand.SetActive(false);
+        LeftHand.SetActive(false);
+        RightController.SetActive(true);
+        LeftController.SetActive(true);
+    }
+    public void OutOfMenucontrol()
+    {
+        RightHand.SetActive(true);
+        LeftHand.SetActive(true);
+        RightController.SetActive(false);
+        LeftController.SetActive(false);
+    }
+
+
+    public void PauseTime()
+    {
+        Time.timeScale = 0;
     }
 
 
@@ -94,6 +129,7 @@ public class GameManager : MonoBehaviour
             StartCoroutine(Timer());
             TimeLimit.value = timer;
         }
+
         
     }
     //Gets you back to menu
@@ -110,6 +146,9 @@ public class GameManager : MonoBehaviour
         MenuList[2].SetActive(false);
         MenuList[3].SetActive(false);
         MenuList[4].SetActive(false);
+        Time.timeScale = 1;
+        OutOfMenucontrol();
+
     }
 
 
@@ -118,6 +157,9 @@ public class GameManager : MonoBehaviour
     public void Reset()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Time.timeScale = 1;
+        OutOfMenucontrol();
+
     }
     //Quits game
     public void Quit()
