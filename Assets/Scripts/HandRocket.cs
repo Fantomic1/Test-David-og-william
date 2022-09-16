@@ -5,6 +5,7 @@ using OVR;
 using TMPro;
 using UnityEngine.UI;
 using System.Runtime.InteropServices;
+using Unity.VisualScripting;
 
 public class HandRocket : MonoBehaviour
 {
@@ -31,8 +32,6 @@ public class HandRocket : MonoBehaviour
     private bool OverHeat = false;
     [SerializeField]
     private Image fillRight;
-    [SerializeField]
-    private Slider FuelUILeft;
     [SerializeField]
     private Slider FuelUIRight;
     public Rigidbody body;
@@ -70,8 +69,6 @@ public class HandRocket : MonoBehaviour
 
     private void Start()
     {
-        FuelUILeft.maxValue = MAXFUEl;
-        FuelUILeft.value = RocketFuel;
         FuelUIRight.maxValue = MAXFUEl;
         FuelUIRight.value = RocketFuel;
         fillRight.color = Color.green;
@@ -89,9 +86,7 @@ public class HandRocket : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameManager.isPaused == false)
-        {
-            FuelUILeft.value = RocketFuel;
+
             FuelUIRight.value = RocketFuel;
 
             //maxpower add
@@ -103,7 +98,6 @@ public class HandRocket : MonoBehaviour
             if (RocketFuel < 0)
             {
                 OverHeat = true;
-
             }
 
             if (RocketFuel > MAXFUEl - 1)
@@ -164,6 +158,10 @@ public class HandRocket : MonoBehaviour
                     leftLine.SetPosition(1, leftRender.point);
                     leftLine.material = CanSwing;
 
+                }else if (leftRender.collider != null && leftRender.transform.gameObject.layer == LayerMask.NameToLayer("Buttons"))
+                {
+                Buttons button = leftRender.collider.GetComponent<Buttons>();
+                button.ButtonPressed();
                 }
                 else
                 {
@@ -188,7 +186,11 @@ public class HandRocket : MonoBehaviour
                 {
                     rightLine.SetPosition(1, rightRender.point);
                     rightLine.material = CanSwing;
-                }
+                }else if (rightRender.collider != null && rightRender.transform.gameObject.layer == LayerMask.NameToLayer("Buttons"))
+                {
+                Buttons button = rightRender.collider.GetComponent<Buttons>();
+                button.ButtonPressed();
+            }
                 else
                 {
                     rightLine.SetPosition(1, RightLaserPos.position + RightLaserPos.forward * 50);
@@ -221,6 +223,8 @@ public class HandRocket : MonoBehaviour
             //graple turn on spring.
             if (OVRInput.GetDown(OVRInput.Button.One, OVRInput.Controller.LTouch))
             {
+            if (gameManager.isPaused == false)
+            {
                 RaycastHit hit;
                 Physics.Raycast(LeftLaserPos.position + LeftLaserPos.forward, LeftLaserPos.forward, out hit);
                 leftSpring.connectedAnchor = hit.point;
@@ -230,10 +234,14 @@ public class HandRocket : MonoBehaviour
                     body.WakeUp();
                     leftOn = false;
                 }
+            }
+       
 
             }
 
             if (OVRInput.GetDown(OVRInput.Button.One, OVRInput.Controller.RTouch))
+            {
+            if (gameManager.isPaused == false)
             {
                 RaycastHit hit;
                 Physics.Raycast(RightLaserPos.position + RightLaserPos.forward, RightLaserPos.forward, out hit);
@@ -246,12 +254,18 @@ public class HandRocket : MonoBehaviour
                     rightOn = false;
                 }
             }
+             
+            }
 
 
             if (OVRInput.GetDown(OVRInput.Button.Two, OVRInput.Controller.LTouch))
             {
+            if(gameManager.isPaused == true)
+            {
+                gameManager.UnPauseTime();
+                gameManager.BackToGame();
+            }
                 gameManager.Pause();
             }
-        }
     }
 }

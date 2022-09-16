@@ -28,10 +28,10 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private TMP_Text Clock;
     [SerializeField]
-    private Slider TimeLimit;
-    [SerializeField]
     private int MaxTimeToComplete;
     int timer;
+    [SerializeField]
+    private Slider TimeUI;
 
     [Header("Important stuff")]
     [SerializeField]
@@ -42,19 +42,6 @@ public class GameManager : MonoBehaviour
     private GameObject Player;
     [SerializeField]
     private GameObject ZeroPoint;
-    [SerializeField]
-    private GameObject RightHand;
-    [SerializeField]
-    private GameObject LeftHand;
-    [SerializeField]
-    private GameObject RightController;
-    [SerializeField]
-    private GameObject LeftController;
-    [SerializeField]
-    private GameObject RightLineRenderer;
-    [SerializeField]
-    private GameObject LeftLineRenderer;
-
 
     [HideInInspector]
     public bool isPaused;
@@ -106,15 +93,12 @@ public class GameManager : MonoBehaviour
             }
             
         }
-        
-        Menucontrol();
         PauseTime();
     }
     public void LostGame()
     {
         MenuList[3].SetActive(true);
         PauseTime();
-        Menucontrol();
         LoseScore.text = ("Your Time: " + timer);
     }
 
@@ -137,26 +121,7 @@ public class GameManager : MonoBehaviour
     public void Pause ()
     {
         MenuList[1].SetActive(true);
-        Menucontrol();
         PauseTime();
-    }
-    public void Menucontrol ()
-    {
-        RightHand.SetActive(false);
-        LeftHand.SetActive(false);
-        RightController.SetActive(true);
-        LeftController.SetActive(true);
-        RightLineRenderer.SetActive(false);
-        LeftLineRenderer.SetActive(false);
-    }
-    public void OutOfMenucontrol()
-    {
-        RightHand.SetActive(true);
-        LeftHand.SetActive(true);
-        RightController.SetActive(false);
-        LeftController.SetActive(false);
-        RightLineRenderer.SetActive(true);
-        LeftLineRenderer.SetActive(true);
     }
 
 
@@ -177,9 +142,9 @@ public class GameManager : MonoBehaviour
     {
         if (Clock != null)
         {
-            TimeLimit.maxValue = MaxTimeToComplete;
+            TimeUI.maxValue = MaxTimeToComplete;
             StartCoroutine(Timer());
-            TimeLimit.value = timer;
+            TimeUI.value = timer;
         }
 
         
@@ -199,7 +164,6 @@ public class GameManager : MonoBehaviour
         MenuList[2].SetActive(false);
         MenuList[3].SetActive(false);
         UnPauseTime();
-        OutOfMenucontrol();
 
     }
 
@@ -210,7 +174,6 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         UnPauseTime();
-        OutOfMenucontrol();
             Stars[0].SetActive(false);
             Stars[1].SetActive(false);
             Stars[2].SetActive(false);
@@ -229,7 +192,7 @@ public class GameManager : MonoBehaviour
         while (timer < MaxTimeToComplete && isPaused == false)
         {
             timer++;
-            TimeLimit.value = timer;
+            TimeUI.value = timer;
             yield return new WaitForSeconds(1);
         }
        
