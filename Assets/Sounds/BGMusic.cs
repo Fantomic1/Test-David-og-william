@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class BGMusic : MonoBehaviour
 {
+    public AudioSource Source;
+    public AudioClip sound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -13,6 +16,9 @@ public class BGMusic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Source.PlayOneShot(sound);
+        }
     }
 }

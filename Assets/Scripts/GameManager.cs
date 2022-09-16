@@ -213,7 +213,7 @@ public class GameManager : MonoBehaviour
         OutOfMenucontrol();
             Stars[0].SetActive(false);
             Stars[1].SetActive(false);
-            Stars[3].SetActive(false);
+            Stars[2].SetActive(false);
         
         
     }
