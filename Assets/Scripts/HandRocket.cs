@@ -163,10 +163,6 @@ public class HandRocket : MonoBehaviour
                     leftLine.SetPosition(1, leftRender.point);
                     leftLine.material = CanSwing;
 
-                }else if (leftRender.collider != null && leftRender.transform.gameObject.layer == LayerMask.NameToLayer("Buttons"))
-                {
-                Buttons button = leftRender.collider.GetComponent<Buttons>();
-                button.ButtonPressed();
                 }
                 else
                 {
@@ -191,11 +187,7 @@ public class HandRocket : MonoBehaviour
                 {
                     rightLine.SetPosition(1, rightRender.point);
                     rightLine.material = CanSwing;
-                }else if (rightRender.collider != null && rightRender.transform.gameObject.layer == LayerMask.NameToLayer("Buttons"))
-                {
-                Buttons button = rightRender.collider.GetComponent<Buttons>();
-                button.ButtonPressed();
-            }
+                }
                 else
                 {
                     rightLine.SetPosition(1, RightLaserPos.position + RightLaserPos.forward * 50);
@@ -233,7 +225,11 @@ public class HandRocket : MonoBehaviour
                 RaycastHit hit;
                 Physics.Raycast(LeftLaserPos.position + LeftLaserPos.forward, LeftLaserPos.forward, out hit);
                 leftSpring.connectedAnchor = hit.point;
-                if (hit.collider != null && hit.transform.gameObject.layer == LayerMask.NameToLayer("Swingable") && Vector3.Distance(hit.transform.position, LeftLaserPos.transform.position) <= SwingDistance)
+                if(hit.collider != null && hit.transform.gameObject.layer == LayerMask.NameToLayer("Buttons"))
+                {
+                    Buttons buttons = hit.collider.GetComponent<Buttons>();
+                    buttons.ButtonPressed();
+                }else if (hit.collider != null && hit.transform.gameObject.layer == LayerMask.NameToLayer("Swingable") && Vector3.Distance(hit.transform.position, LeftLaserPos.transform.position) <= SwingDistance)
                 {
                     leftSpring.connectedBody = null;
                     body.WakeUp();
@@ -251,8 +247,12 @@ public class HandRocket : MonoBehaviour
                 RaycastHit hit;
                 Physics.Raycast(RightLaserPos.position + RightLaserPos.forward, RightLaserPos.forward, out hit);
                 rightSpring.connectedAnchor = hit.point;
-
-                if (hit.collider != null && hit.transform.gameObject.layer == LayerMask.NameToLayer("Swingable") && Vector3.Distance(hit.transform.position, RightLaserPos.transform.position) <= SwingDistance)
+                if (hit.collider != null && hit.transform.gameObject.layer == LayerMask.NameToLayer("Buttons"))
+                {
+                    Buttons buttons = hit.collider.GetComponent<Buttons>();
+                    buttons.ButtonPressed();
+                }
+                else if (hit.collider != null && hit.transform.gameObject.layer == LayerMask.NameToLayer("Swingable") && Vector3.Distance(hit.transform.position, RightLaserPos.transform.position) <= SwingDistance)
                 {
                     rightSpring.connectedBody = null;
                     body.WakeUp();
@@ -265,12 +265,18 @@ public class HandRocket : MonoBehaviour
 
             if (OVRInput.GetDown(OVRInput.Button.Two, OVRInput.Controller.LTouch))
             {
-            if(gameManager.isPaused == true)
+            
+            if (gameManager.isPaused == false)
+            {
+                gameManager.Pause();
+            }
+
+            if (gameManager.isPaused == true)
             {
                 gameManager.UnPauseTime();
                 gameManager.BackToGame();
             }
-                gameManager.Pause();
+
             }
     }
 }
