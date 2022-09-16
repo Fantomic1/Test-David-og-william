@@ -43,6 +43,14 @@ public class GameManager : MonoBehaviour
     private GameObject RightController;
     [SerializeField]
     private GameObject LeftController;
+    [SerializeField]
+    private GameObject RightLineRenderer;
+    [SerializeField]
+    private GameObject LeftLineRenderer;
+
+
+
+    public bool isPaused;
 
     [Header("Settings=1, Pause=2, Lost=3, Won=4")]
     [SerializeField]
@@ -105,6 +113,8 @@ public class GameManager : MonoBehaviour
         LeftHand.SetActive(false);
         RightController.SetActive(true);
         LeftController.SetActive(true);
+        RightLineRenderer.SetActive(false);
+        LeftLineRenderer.SetActive(false);
     }
     public void OutOfMenucontrol()
     {
@@ -112,13 +122,22 @@ public class GameManager : MonoBehaviour
         LeftHand.SetActive(true);
         RightController.SetActive(false);
         LeftController.SetActive(false);
+        RightLineRenderer.SetActive(true);
+        LeftLineRenderer.SetActive(true);
     }
 
 
     public void PauseTime()
     {
+        isPaused = true;
         Time.timeScale = 0;
     }
+    public void UnPauseTime()
+    {
+        isPaused = false;
+        Time.timeScale = 1;
+    }
+
 
 
     public void StartGame ()
@@ -146,7 +165,7 @@ public class GameManager : MonoBehaviour
         MenuList[2].SetActive(false);
         MenuList[3].SetActive(false);
         MenuList[4].SetActive(false);
-        Time.timeScale = 1;
+        UnPauseTime();
         OutOfMenucontrol();
 
     }
@@ -157,7 +176,7 @@ public class GameManager : MonoBehaviour
     public void Reset()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        Time.timeScale = 1;
+        UnPauseTime();
         OutOfMenucontrol();
 
     }
@@ -170,7 +189,7 @@ public class GameManager : MonoBehaviour
     //pluses every second
     IEnumerator Timer ()
     {
-        while (timer < MaxTimeToComplete)
+        while (timer < MaxTimeToComplete && isPaused == false)
         {
             timer++;
             TimeLimit.value = timer;
